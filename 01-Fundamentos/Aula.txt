@@ -1,0 +1,84 @@
+29/07/2025
+
+Sistemas paralelos: 
+    Cluster Computacional -> máquinas homogenias, maquinas iguais mesmo SO
+          Ganho de processamento 
+    Sem latencia de rede
+    processos rodand ao mesmo tempo
+    paralelismo é diferente de concomitante
+    Conexão via protocolo TCPIP
+    escalabilidade: habilidade se e expandir ou retrair facilmente -> conexão ponto a ponto = adiciona ou remove failmente
+    Objetivo de compartilha recurso
+
+
+Sistema distribuidos
+    Mquinas distribuidas
+    Alta latencia
+    Grid
+    Menos tolerante a falhas
+    Menos escalavel
+
+
+pesquisa: O que é e como funciona processos? 
+          O que é e como funciona a Thred? 
+          Qual a diferença entre processo e Thred? 
+          A difereça entre servidor e ponto a ponto? 
+
+
+---O que é e como funciona processos? 
+
+é uma unidade fundamental de conexão que interagem coms as demais unidades com um objetivo comun, 
+ou seja de forma colaborativa
+aporveitando da melhor forma os poderes computacionais em multiplos nós.
+ Execução Independente:
+Cada processo executa de forma autônoma em seu próprio nó, com sua própria memória e recursos. 
+ Comunicação e Cooperação:
+Processos se comunicam e colaboram através de mecanismos de comunicação como mensagens,
+chamadas de procedimento remoto (RPC) ou protocolos de rede, para compartilhar dados e coordenar suas ações.  
+ Concorrência:
+Processos podem ser executados concorrentemente, permitindo que várias tarefas sejam realizadas simultaneamente,
+aumentando a eficiência do sistema. 
+
+----O que é e como funciona a Thred? 
+
+threads são unidades de execução dentro de um processo que permitem a execução concorrente de múltiplas tarefas,
+melhorando o desempenho e a eficiência do sistema. 
+Cada thread compartilha os recursos do processo ao qual pertence, 
+como memória e arquivos, o que facilita a comunicação e o compartilhamento de dados entre eles. 
+Threads são usados para lidar com a execução de tarefas em diferentes nós da rede.
+Cada nó pode executar um ou mais threads, permitindo a execução paralela de tarefas em toda a rede distribuída. 
+Como funciona:
+  Execução Concorrente:
+Threads dentro de um processo podem executar simultaneamente,
+aproveitando a capacidade de processamento do sistema.
+Isso permite que o sistema execute várias tarefas ao mesmo tempo, otimizando o uso dos recursos. 
+  Compartilhamento de Recursos:
+Threads compartilham o mesmo espaço de memória e recursos do processo, o que facilita a comunicação entre eles. 
+No entanto, essa característica também exige mecanismos de sincronização para evitar conflitos de acesso
+a recursos compartilhados. 
+  Tipos de Threads:
+Existem threads de usuário, implementadas por bibliotecas, e threads de núcleo, gerenciados pelo sistema operacional.
+A escolha entre eles depende das necessidades de cada aplicação. 
+
+----Qual a diferença entre processo e Thred? 
+A principal diferença entre processos e threads reside na forma como compartilham recursos e na divisão da execução. 
+Um processo é uma unidade básica de execução com seu próprio espaço de memória, recursos e contexto de execução, 
+enquanto uma thread é uma unidade mais leve de execução dentro de um processo, 
+compartilhando o espaço de endereço e recursos do processo pai. 
+Processos são frequentemente usados para isolar diferentes partes do sistema e garantir a robustez. 
+Threads são usados para realizar tarefas paralelas dentro de um mesmo processo, 
+como lidar com múltiplas requisições simultaneamente, melhorando o desempenho e a eficiência. 
+
+----A difereça entre servidor e ponto a ponto? 
+Reside na forma como os recursos e responsabilidades são distribuídos entre os nós da rede. 
+No modelo cliente-servidor, um servidor centralizado gerencia e fornece recursos para clientes,
+enquanto em redes ponto a ponto, todos os nós podem atuar tanto como cliente quanto como servidor,
+compartilhando recursos diretamente entre si. 
+Em Cliente-Servidor um ou mais computadores dedicados a fornecer serviços e recursos para outros computadores, clientes são,
+Computadores que solicitam serviços e recursos do servidor. Na centralização recursos e dados são armazenados principalmente
+no servidor, com os clientes acessando-os sob demanda. 
+ 
+Em Ponto a Ponto, não há um servidor centralizado responsável por gerenciar recursos.
+Todos os nós na rede podem atuar como clientes e servidores. Os recursos são compartilhados diretamente entre os nós,
+sem a necessidade de um servidor intermediário. Podem ser mais escaláveis, pois o sistema podem lidar
+com um aumento no número de usuários sem sobrecarregar um único servidor. 
