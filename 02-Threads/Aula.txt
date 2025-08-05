@@ -1,0 +1,44 @@
+Uma thread (ou "linha de execução") é a menor unidade de um programa que pode ser gerenciada e executada pelo sistema operacional. Pense nela como uma "subtarefa" dentro de um programa maior, chamada de processo.
+Se o seu navegador é um processo, as abas que você abriu, a reprodução de um vídeo e o download de um arquivo podem ser threads diferentes que rodam dentro dele.
+
+Como as threads funcionam?
+Quando um programa é iniciado, o sistema operacional cria um processo para ele.
+Dentro desse processo, uma thread principal é criada. Esta thread é a responsável por executar o código do programa.
+
+Compartilhamento de recursos: 
+Todas as threads de um mesmo processo compartilham o mesmo espaço de memória e outros recursos.
+Isso torna a comunicação entre elas mais rápida e eficiente do que entre processos diferentes.
+
+Threads e o compartilhamento de memória
+Uma das maiores vantagens do multithreading é que todas as threads de um mesmo processo compartilham o mesmo espaço de memória. Isso inclui o código do programa, os dados e os arquivos abertos.
+Dentro desse espaço compartilhado, cada thread tem sua própria pilha de execução (stack), que armazena informações sobre as funções que estão sendo executadas, variáveis locais e o ponto de retorno.
+No entanto, elas compartilham a mesma área de dados (heap), onde variáveis globais e dados alocados dinamicamente são armazenados.
+
+Thread "Normal" (ou Independente)
+Quando falamos de uma thread "normal", geralmente estamos nos referindo a uma thread que está executando seu próprio conjunto de instruções e usando sua própria pilha de execução. 
+Ela trabalha de forma independente, mas ainda tem acesso aos recursos globais compartilhados do processo.
+
+Exemplo: 
+Em um editor de texto, a thread principal é a "normal". Ela cuida da interface, e quando você clica em "Salvar", ela pode criar uma nova thread para executar a tarefa de salvar o arquivo em segundo plano. Essa nova thread é independente da principal.
+
+Thread "Compartilhada"
+O termo "thread compartilhada" não é uma nomenclatura padrão na computação, mas pode se referir a threads que precisam de um alto grau de coordenação e sincronização para acessar dados que são comuns a todas elas.
+O foco aqui está na gestão dos recursos compartilhados.
+Quando várias threads precisam ler ou modificar os mesmos dados ao mesmo tempo, podem ocorrer problemas, como a condição de corrida (race condition). 
+Isso acontece quando o resultado da execução depende da ordem em que as threads acessam o recurso.
+
+Sincronização: Para evitar esses problemas, os programadores usam mecanismos de sincronização, como:
+
+Semáforos: Mais flexíveis que os mutexes, permitem que um número limitado de threads acesse um recurso ao mesmo tempo.
+
+Variáveis de Condição: Usadas para notificar outras threads quando uma condição específica é atendida.
+
+Exemplo: 
+Imagine um banco de dados. Várias threads podem ser criadas para processar diferentes solicitações de transação (depositar, sacar). Essas threads são "compartilhadas" no sentido de que todas precisam acessar e modificar o saldo de uma conta, que é um dado comum. Se elas não forem sincronizadas, uma thread pode ler o saldo e, antes de conseguir atualizá-lo, outra thread pode modificar o mesmo valor, causando um erro.
+
+Em resumo, o conceito de "thread normal" e "thread compartilhada" não se refere a tipos diferentes de threads, mas sim à natureza da tarefa que a thread está executando e a sua relação com os dados que manipula. 
+Todas as threads de um processo são, por natureza, "compartilhadas" no sentido de que coexistem no mesmo espaço de memória, mas o termo "compartilhada" ganha mais relevância quando o programador precisa se preocupar ativamente com a sincronização do acesso aos dados.
+
+
+
+
