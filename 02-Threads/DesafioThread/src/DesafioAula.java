@@ -119,8 +119,8 @@ public class DesafioAula {
             System.out.println("Populacao finalizada.");
             System.out.println("\nOrdenando as listas");
 
-        OrdenaListaB t3 = new OrdenaListaB(lista2);
-        OrdenaListaP t4 = new OrdenaListaP(lista1);
+            OrdenaListaB t3 = new OrdenaListaB(lista2);
+            OrdenaListaP t4 = new OrdenaListaP(lista1);
             t3.start();
             t4.start();
 
