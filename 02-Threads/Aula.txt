@@ -1,3 +1,5 @@
+05/08/2025
+
 Uma thread (ou "linha de execução") é a menor unidade de um programa que pode ser gerenciada e executada pelo sistema operacional. Pense nela como uma "subtarefa" dentro de um programa maior, chamada de processo.
 Se o seu navegador é um processo, as abas que você abriu, a reprodução de um vídeo e o download de um arquivo podem ser threads diferentes que rodam dentro dele.
 
@@ -38,6 +40,75 @@ Imagine um banco de dados. Várias threads podem ser criadas para processar dife
 
 Em resumo, o conceito de "thread normal" e "thread compartilhada" não se refere a tipos diferentes de threads, mas sim à natureza da tarefa que a thread está executando e a sua relação com os dados que manipula. 
 Todas as threads de um processo são, por natureza, "compartilhadas" no sentido de que coexistem no mesmo espaço de memória, mas o termo "compartilhada" ganha mais relevância quando o programador precisa se preocupar ativamente com a sincronização do acesso aos dados.
+
+12/08/2025
+
+19/08/2025
+Threds com memória compatilhada 
+aplicação de threds para preencher uma lista compartilhada com sincronização.
+aplicando orientada objeto para transformar a lista em atributo de uma classe que será preenchida com get e set, utilizando metodos.
+-------------------------------------------------------------------------------------
+import java.util.ArrayList;
+import java.util.List;
+ 
+class ListaCompartilhada {
+    private final List<Integer> numeros = new ArrayList<>(); //observem a visibilidade final
+ 
+    //método set da variavel numeros que é private final - operacao escrever
+    public synchronized void adicionarNumero(int umNumero) {
+        numeros.add(umNumero);
+        System.out.println(Thread.currentThread().getName() + " adicionou: " + umNumero);
+    }
+ 
+    //metodo get da variavel numeros que é private final - operacao leitura
+    //metodo get de acesso tipo leitura da lista numeros
+    public synchronized List<Integer> retornarNumeros() { 
+        return new ArrayList<>(numeros);
+    }
+}
+ 
+class ThreadDeTrabalho extends Thread {
+    private final ListaCompartilhada listaCompartilhada;
+    int quantidadeNumeros;
+
+    //construtor que recebe a lista e a quantidade de numeros
+    public ThreadDeTrabalho(ListaCompartilhada lista, int quantidadeNumeros) {
+        this.listaCompartilhada = lista;
+        this.quantidadeNumeros = quantidadeNumeros;
+    }
+
+    //execução da thred
+    @Override
+    public void run() {
+        for (int i = 1; i <= this.quantidadeNumeros; i++) {
+            listaCompartilhada.adicionarNumero(i);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException ignored) {}
+        }
+    }
+}
+ 
+public class Principal {
+    public static void main(String[] args) throws InterruptedException {
+        ListaCompartilhada listaCompartilhada = new ListaCompartilhada();
+        
+ 
+        //ha duas threads que populam números inteiros na mesma thread
+        Thread t1 = new ThreadDeTrabalho(listaCompartilhada, 5);
+        Thread t2 = new ThreadDeTrabalho(listaCompartilhada, 5);
+ 
+        t1.start();
+        t2.start();
+
+        //join faz com que a execução aguarde o preenchimento das listas
+        t1.join();
+        t2.join();
+ 
+        System.out.println("Lista final: " + listaCompartilhada.retornarNumeros());
+    }
+}
+-------------------------------------------------------------------------------------------------------
 
 
 
