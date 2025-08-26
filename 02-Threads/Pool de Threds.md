@@ -18,12 +18,12 @@ O Gerenciador do Pool (Pool Manager): Este componente gerencia o ciclo de vida d
 
 FLUXOCOMUN DAS THREDS POOL:
 
-Uma tarefa é submetida ao pool.
+- Uma tarefa é submetida ao pool.
 
-O gerenciador coloca a tarefa na fila de tarefas.
+- O gerenciador coloca a tarefa na fila de tarefas.
 
-Um thread de worker ocioso no pool pega a próxima tarefa da fila.
+- Um thread de worker ocioso no pool pega a próxima tarefa da fila.
 
-O thread executa a tarefa.
+- O thread executa a tarefa.
 
-Quando a tarefa é concluída, o thread retorna para o pool, pronto para pegar a próxima tarefa.
+- Quando a tarefa é concluída, o thread retorna para o pool, pronto para pegar a próxima tarefa.
